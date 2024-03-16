@@ -10,3 +10,5 @@ BUILD_DIR=build
 all: $(OBJS)
 	$(LD) -o $(BUILD_DIR)/$(TARGET) $(OBJS) $(LDFLAGS)
 
+clean:
+	rm -rf $(BUILD_DIR)
