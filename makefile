@@ -12,3 +12,6 @@ all: $(OBJS)
 
 clean:
 	rm -rf $(BUILD_DIR)
+
+build:
+	mkdir -p $(BUILD_DIR)
