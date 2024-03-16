@@ -7,4 +7,6 @@ LDFLAGS=$(PTHREAD) -static
 OBJS=main.o
 BUILD_DIR=build
 
+all: $(OBJS)
+	$(LD) -o $(BUILD_DIR)/$(TARGET) $(OBJS) $(LDFLAGS)
 
