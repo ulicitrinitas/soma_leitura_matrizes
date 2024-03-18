@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+char** leitura_das_matrizes(FILE *f, int size);
+
 int main(int argc, char **argv)
 {
     printf("%s was running with %d args\n", argv[0], argc-1);
@@ -28,35 +30,48 @@ int main(int argc, char **argv)
 
     printf("f1: %s\nf2: %s\n", argv[4], argv[5]);
 
-    char **linhas_m1 = (char**) calloc(num_msize, sizeof(char*));
+    char **linhas_m1 = leitura_das_matrizes(f1, num_msize);
+    char **linhas_m2 = leitura_das_matrizes(f2, num_msize);
 
-    if(linhas_m1 == NULL){
-        puts("Erro! Espaco insuficiente!");
-        return EXIT_FAILURE;
-    }
-
-    for(int i  = 0; i < num_msize; i++){
-        linhas_m1[i] = (char*) calloc(1024, sizeof(char));
-    }
-
-    if(linhas_m1[1] == NULL){
-        puts("Erro! Espaco insuficiente no vetor!");
-        return EXIT_FAILURE;
-    }
-
-    int count = 0;
-
-    while(!feof(f1)){
-        fgets(linhas_m1[count], 1024, f1);
-        count++;
-    }
-
+    puts("m1: ");
     for(int i = 0; i < num_msize; i++){
         printf("%s", linhas_m1[i]);
     }
     puts("");
 
-    
+    puts("m2: ");
+    for(int i = 0; i < num_msize; i++){
+        printf("%s", linhas_m2[i]);
+    }
+    puts("");
 
     return 0;
+}
+
+char** leitura_das_matrizes(FILE *f, int size)
+{
+    char **linhas = (char**) calloc(size, sizeof(char*));
+
+    if(linhas == NULL){
+        puts("Erro! Espaco insuficiente!");
+        exit(EXIT_FAILURE);
+    }
+
+    for(int i  = 0; i < size; i++){
+        linhas[i] = (char*) calloc(1024, sizeof(char));
+    }
+
+    if(linhas[1] == NULL){
+        puts("Erro! Espaco insuficiente no vetor!");
+        exit(EXIT_FAILURE);
+    }
+
+    int count = 0;
+
+    while(!feof(f)){
+        fgets(linhas[count], 1024, f);
+        count++;
+    }
+
+    return linhas;
 }
