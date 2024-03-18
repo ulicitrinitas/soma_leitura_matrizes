@@ -10,6 +10,9 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
+    const int num_threads = atoi(argv[2]);
+    const int num_msize = atoi(argv[3]);
+
     
 
     return 0;
