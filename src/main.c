@@ -13,6 +13,17 @@ int main(int argc, char **argv)
     const int num_threads = atoi(argv[2]);
     const int num_msize = atoi(argv[3]);
 
+    FILE *f1;
+    FILE *f2;
+
+    f1 = fopen(argv[4], "r");
+    f2 = fopen(argv[5], "r");
+
+    if(f1 == NULL || f2 == NULL){
+        puts("Erro! Leitura dos arquivos falhou!");
+        return EXIT_FAILURE;
+    }
+
     
 
     return 0;
