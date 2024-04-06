@@ -5,6 +5,8 @@
 
 char** leitura_das_matrizes(FILE *f, int size);
 void show(int n);
+void substitui_char(char **m_str, int num, char antigo, char novo);
+void print_cmatrix(char **m_str, int num);
 
 int main(int argc, char **argv)
 {
@@ -40,35 +42,24 @@ int main(int argc, char **argv)
 
     show(n_show);
     puts("m1: ");
-    for(int i = 0; i < num_msize; i++){
-        printf("%s", linhas_m1[i]);
-    }
-    puts("");
+    print_cmatrix(linhas_m1, num_msize);
 
     show(n_show);
-    puts("m2: ");
-    for(int i = 0; i < num_msize; i++){
-        printf("%s", linhas_m2[i]);
-    }
-    puts("");
-    show(n_show);
+    puts("m2");
+    print_cmatrix(linhas_m2, num_msize);
 
-    fclose(f2);
-    fclose(f1);
-
-    for(int i = 0; i < num_msize; i++){
-        for(int j = 0; j < 1024; j++){
-            if(linhas_m1[i][j] == ' '){
-                linhas_m1[i][j] = '$';
-            }
-        }
-    }
+    substitui_char(linhas_m1, num_msize, ' ', '$');
 
     show(n_show);
     puts("m1: ");
-    for(int i = 0; i < num_msize; i++){
-        printf("%s", linhas_m1[i]);
-    }
+    print_cmatrix(linhas_m1, num_msize);
+
+    substitui_char(linhas_m2, num_msize, ' ', '$');
+
+    show(n_show);
+    puts("m2: ");
+    print_cmatrix(linhas_m2, num_msize);
+
 
     return 0;
 }
@@ -109,4 +100,23 @@ char** leitura_das_matrizes(FILE *f, int size)
     }
 
     return linhas;
+}
+
+void substitui_char(char **m_str, int num, char antigo, char novo)
+{
+    for(int i = 0; i < num; i++){
+        for(int j = 0; j < 1024; j++){
+            if(m_str[i][j] == antigo){
+                m_str[i][j] = novo;
+            }
+        }
+    }
+}
+
+void print_cmatrix(char **m_str, int num)
+{
+    for(int i = 0; i < num; i++){
+        printf("%s", m_str[i]);
+    }
+    puts("");
 }
