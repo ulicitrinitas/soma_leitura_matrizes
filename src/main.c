@@ -46,29 +46,29 @@ int main(int argc, char **argv)
     show(n_show);
     printf("fA: %s\nfB: %s\n", argv[4], argv[5]);
 
-    char **linhas_m1 = leitura_das_matrizes(fA, num_msize);
-    char **linhas_m2 = leitura_das_matrizes(fB, num_msize);
+    char **linhas_mA = leitura_das_matrizes(fA, num_msize);
+    char **linhas_mB = leitura_das_matrizes(fB, num_msize);
 
     fclose(fA);
     fclose(fB);
 
-    print_cmatrix(linhas_m1, num_msize);
+    print_cmatrix(linhas_mA, num_msize);
 
-    print_cmatrix(linhas_m2, num_msize);
+    print_cmatrix(linhas_mB, num_msize);
 
     char padrao = '$';
 
-    substitui_char(linhas_m1, num_msize, ' ', padrao);
+    substitui_char(linhas_mA, num_msize, ' ', padrao);
 
-    print_cmatrix(linhas_m1, num_msize);
+    print_cmatrix(linhas_mA, num_msize);
 
-    substitui_char(linhas_m2, num_msize, ' ', padrao);
+    substitui_char(linhas_mB, num_msize, ' ', padrao);
 
     
-    print_cmatrix(linhas_m2, num_msize);
+    print_cmatrix(linhas_mB, num_msize);
 
-    int** m1 = gerar_nmatriz_lida(linhas_m1, num_msize, padrao);
-    int** m2 = gerar_nmatriz_lida(linhas_m2, num_msize, padrao);
+    int** m1 = gerar_nmatriz_lida(linhas_mA, num_msize, padrao);
+    int** m2 = gerar_nmatriz_lida(linhas_mB, num_msize, padrao);
 
     print_nmatrix(m1, num_msize);
     print_nmatrix(m2, num_msize);
