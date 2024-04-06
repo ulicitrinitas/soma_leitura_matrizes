@@ -56,7 +56,19 @@ int main(int argc, char **argv)
     fclose(f2);
     fclose(f1);
 
-    
+    for(int i = 0; i < num_msize; i++){
+        for(int j = 0; j < 1024; j++){
+            if(linhas_m1[i][j] == ' '){
+                linhas_m1[i][j] = '$';
+            }
+        }
+    }
+
+    show(n_show);
+    puts("m1: ");
+    for(int i = 0; i < num_msize; i++){
+        printf("%s", linhas_m1[i]);
+    }
 
     return 0;
 }
