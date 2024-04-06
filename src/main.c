@@ -5,7 +5,7 @@
 #define n_show 30
 
 struct matriz{
-    FILE f;
+    FILE* f;
     char** lida;
     int** gerada;
     int tamanho;
@@ -47,46 +47,52 @@ int main(int argc, char **argv)
     show(n_show);
     printf("num_threads: %d\nnum_msize: %d\n", num_threads, num_msize);
 
-    FILE *fA;
-    FILE *fB;
+    Matriz* matrizA = (Matriz*) malloc(sizeof(Matriz));
+    Matriz* matrizB = (Matriz*) malloc(sizeof(Matriz));
 
-    fA = fopen(argv[3], "r");
-    fB = fopen(argv[4], "r");
+    if(matrizA == NULL || matrizB == NULL){
+        puts("Erro! Memoria Insuficiente!");
+        return EXIT_FAILURE;
+    }
 
-    if(fA == NULL || fB == NULL){
+
+    matrizA->f = fopen(argv[3], "r");
+    matrizB->f = fopen(argv[4], "r");
+
+    if(matrizA->f == NULL || matrizB->f == NULL){
         puts("Erro! Leitura dos arquivos falhou!");
         return EXIT_FAILURE;
     }
 
     show(n_show);
-    printf("fA: %s\nfB: %s\n", argv[4], argv[5]);
+    printf("matrizA->f: %s\nmatrizB->f: %s\n", argv[4], argv[5]);
 
-    char **linhas_mA = leitura_das_matrizes(fA, num_msize);
-    char **linhas_mB = leitura_das_matrizes(fB, num_msize);
+    matrizA->lida = leitura_das_matrizes(matrizA->f, num_msize);
+    matrizB->lida = leitura_das_matrizes(matrizB->f, num_msize);
 
-    fclose(fA);
-    fclose(fB);
+    fclose(matrizA->f);
+    fclose(matrizB->f);
 
-    print_cmatrix(linhas_mA, num_msize);
+    print_cmatrix(matrizA->lida, num_msize);
 
-    print_cmatrix(linhas_mB, num_msize);
+    print_cmatrix(matrizB->lida, num_msize);
 
     char padrao = '$';
 
-    substitui_char(linhas_mA, num_msize, ' ', padrao);
+    substitui_char(matrizA->lida, num_msize, ' ', padrao);
 
-    print_cmatrix(linhas_mA, num_msize);
+    print_cmatrix(matrizA->lida, num_msize);
 
-    substitui_char(linhas_mB, num_msize, ' ', padrao);
+    substitui_char(matrizB->lida, num_msize, ' ', padrao);
 
     
-    print_cmatrix(linhas_mB, num_msize);
+    print_cmatrix(matrizB->lida, num_msize);
 
-    int** mA = gerar_nmatriz_lida(linhas_mA, num_msize, padrao);
-    int** mB = gerar_nmatriz_lida(linhas_mB, num_msize, padrao);
+    matrizA->gerada = gerar_nmatriz_lida(matrizA->lida, num_msize, padrao);
+    matrizB->gerada = gerar_nmatriz_lida(matrizB->lida, num_msize, padrao);
 
-    print_nmatrix(mA, num_msize);
-    print_nmatrix(mB, num_msize);
+    print_nmatrix(matrizA->gerada, num_msize);
+    print_nmatrix(matrizB->gerada, num_msize);
 
     return 0;
 }
