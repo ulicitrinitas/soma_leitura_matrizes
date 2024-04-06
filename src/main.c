@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define n_show 30
 
@@ -62,6 +63,33 @@ int main(int argc, char **argv)
     show(n_show);
     puts("m2: ");
     print_cmatrix(linhas_m2, num_msize);
+
+    int** matriz_m1 = (int**) calloc(num_msize, sizeof(int*));
+
+    if(matriz_m1 == NULL){
+        puts("Erro! Espaco insuficiente!");
+        exit(EXIT_FAILURE);
+    }
+
+
+    for(int i = 0; i < num_msize; i++){
+        matriz_m1[i] = (int*) calloc(num_msize, sizeof(int));
+
+        if(matriz_m1[i] == NULL){
+            puts("Erro! Espaco insuficiente!");
+            exit(EXIT_FAILURE);
+        }
+    }
+
+    char del = '$';
+
+    char* substring = strtok(linhas_m1[1], &del);
+
+    show(n_show);
+    while(substring != NULL){
+        printf("substring: %s\n", substring);
+        substring = strtok(NULL, &del);
+    }
 
 
     return 0;
