@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define n_show 30
+
 char** leitura_das_matrizes(FILE *f, int size);
+void show(int n);
 
 int main(int argc, char **argv)
 {
@@ -15,6 +18,7 @@ int main(int argc, char **argv)
     const int num_threads = atoi(argv[1]);
     const int num_msize = atoi(argv[2]);
 
+    show(n_show);
     printf("num_threads: %d\nnum_msize: %d\n", num_threads, num_msize);
 
     FILE *f1;
@@ -28,24 +32,38 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
+    show(n_show);
     printf("f1: %s\nf2: %s\n", argv[4], argv[5]);
 
     char **linhas_m1 = leitura_das_matrizes(f1, num_msize);
     char **linhas_m2 = leitura_das_matrizes(f2, num_msize);
 
+    show(n_show);
     puts("m1: ");
     for(int i = 0; i < num_msize; i++){
         printf("%s", linhas_m1[i]);
     }
     puts("");
 
+    show(n_show);
     puts("m2: ");
     for(int i = 0; i < num_msize; i++){
         printf("%s", linhas_m2[i]);
     }
     puts("");
+    show(n_show);
 
     return 0;
+}
+
+void show(int n)
+{
+    int i = 0;
+    while(i < n){
+        printf("=-"); 
+        i++;
+    }
+    printf("\n");
 }
 
 char** leitura_das_matrizes(FILE *f, int size)
