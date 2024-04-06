@@ -53,6 +53,11 @@ int main(int argc, char **argv)
     puts("");
     show(n_show);
 
+    fclose(f2);
+    fclose(f1);
+
+    
+
     return 0;
 }
 
