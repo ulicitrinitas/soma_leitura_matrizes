@@ -8,7 +8,7 @@ char** leitura_das_matrizes(FILE *f, int size);
 void show(int n);
 void substitui_char(char **m_str, int num, char antigo, char novo);
 void print_cmatrix(char **m_str, int num);
-int** gerar_matriz(char** c_matriz, int num_msize, char padrao);
+int** gerar_matriz(int num);
 void print_nmatrix(int **m_int, int num);
 
 int main(int argc, char **argv)
@@ -142,9 +142,9 @@ void print_nmatrix(int **m_int, int num)
     }
 }
 
-int** gerar_matriz(char** c_matriz, int num_msize, char padrao)
+int** gerar_matriz(int num)
 {
-    int** matriz = (int**) calloc(num_msize, sizeof(int*));
+    int** matriz = (int**) calloc(num, sizeof(int*));
 
     if(matriz == NULL){
         puts("Erro! Espaco insuficiente!");
@@ -152,8 +152,8 @@ int** gerar_matriz(char** c_matriz, int num_msize, char padrao)
     }
 
 
-    for(int i = 0; i < num_msize; i++){
-        matriz[i] = (int*) calloc(num_msize, sizeof(int));
+    for(int i = 0; i < num; i++){
+        matriz[i] = (int*) calloc(num, sizeof(int));
 
         if(matriz[i] == NULL){
             puts("Erro! Espaco insuficiente!");
@@ -161,17 +161,20 @@ int** gerar_matriz(char** c_matriz, int num_msize, char padrao)
         }
     }
 
+    return matriz;
+}
+
+int** inserir_nmatriz(int** matriz, char** c_matriz, int num_msize, char padrao){
     for(int i = 0; i < num_msize; i++){
         char* substring = strtok(c_matriz[i], &padrao);
 
         int j = 0;
 
         while(substring != NULL){
-            
+                
             matriz[i][j] = atoi(substring);
-
             substring = strtok(NULL, &padrao);
-
+            
             j++;
         }
     }
