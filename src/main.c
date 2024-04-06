@@ -4,6 +4,21 @@
 
 #define n_show 30
 
+struct matriz{
+    FILE f;
+    char** lida;
+    int** gerada;
+    int tamanho;
+};
+
+struct resultante{
+    int** matriz;
+    int tamanho;
+};
+
+typedef struct matriz Matriz;
+typedef struct resultante Resultante;
+
 char** leitura_das_matrizes(FILE *f, int size);
 
 void show(int n);
