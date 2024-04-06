@@ -67,11 +67,11 @@ int main(int argc, char **argv)
     
     print_cmatrix(linhas_mB, num_msize);
 
-    int** m1 = gerar_nmatriz_lida(linhas_mA, num_msize, padrao);
-    int** m2 = gerar_nmatriz_lida(linhas_mB, num_msize, padrao);
+    int** mA = gerar_nmatriz_lida(linhas_mA, num_msize, padrao);
+    int** mB = gerar_nmatriz_lida(linhas_mB, num_msize, padrao);
 
-    print_nmatrix(m1, num_msize);
-    print_nmatrix(m2, num_msize);
+    print_nmatrix(mA, num_msize);
+    print_nmatrix(mB, num_msize);
 
     return 0;
 }
