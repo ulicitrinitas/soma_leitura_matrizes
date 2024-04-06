@@ -40,6 +40,9 @@ int main(int argc, char **argv)
     char **linhas_m1 = leitura_das_matrizes(f1, num_msize);
     char **linhas_m2 = leitura_das_matrizes(f2, num_msize);
 
+    fclose(f1);
+    fclose(f2);
+
     show(n_show);
     puts("m1: ");
     print_cmatrix(linhas_m1, num_msize);
