@@ -5,11 +5,15 @@
 #define n_show 30
 
 char** leitura_das_matrizes(FILE *f, int size);
+
 void show(int n);
-void substitui_char(char **m_str, int num, char antigo, char novo);
 void print_cmatrix(char **m_str, int num);
-int** gerar_matriz(int num);
 void print_nmatrix(int **m_int, int num);
+void substitui_char(char **m_str, int num, char antigo, char novo);
+
+int** gerar_nmatriz(int num);
+int** inserir_nmatriz(int** matriz, char** c_matriz, int num_msize, char padrao);
+int** gerar_nmatriz_lida(char** c_matriz, int num, char padrao);
 
 int main(int argc, char **argv)
 {
@@ -61,8 +65,8 @@ int main(int argc, char **argv)
     
     print_cmatrix(linhas_m2, num_msize);
 
-    int** m1 = gerar_matriz(linhas_m1, num_msize, padrao);
-    int** m2 = gerar_matriz(linhas_m2, num_msize, padrao);
+    int** m1 = gerar_nmatriz_lida(linhas_m1, num_msize, padrao);
+    int** m2 = gerar_nmatriz_lida(linhas_m2, num_msize, padrao);
 
     print_nmatrix(m1, num_msize);
     print_nmatrix(m2, num_msize);
@@ -142,7 +146,7 @@ void print_nmatrix(int **m_int, int num)
     }
 }
 
-int** gerar_matriz(int num)
+int** gerar_nmatriz(int num)
 {
     int** matriz = (int**) calloc(num, sizeof(int*));
 
@@ -164,8 +168,9 @@ int** gerar_matriz(int num)
     return matriz;
 }
 
-int** inserir_nmatriz(int** matriz, char** c_matriz, int num_msize, char padrao){
-    for(int i = 0; i < num_msize; i++){
+int** inserir_nmatriz(int** matriz, char** c_matriz, int num, char padrao)
+{
+    for(int i = 0; i < num; i++){
         char* substring = strtok(c_matriz[i], &padrao);
 
         int j = 0;
@@ -178,6 +183,14 @@ int** inserir_nmatriz(int** matriz, char** c_matriz, int num_msize, char padrao)
             j++;
         }
     }
+
+    return matriz;
+}
+
+int** gerar_nmatriz_lida(char** c_matriz, int num, char padrao)
+{
+    int** matriz = gerar_nmatriz(num);
+    matriz = inserir_nmatriz(matriz, c_matriz, num, padrao);
 
     return matriz;
 }
