@@ -8,12 +8,10 @@ struct matriz{
     FILE* f;
     char** lida;
     int** gerada;
-    int tamanho;
 };
 
 struct resultante{
     int** matriz;
-    int tamanho;
 };
 
 typedef struct matriz Matriz;
