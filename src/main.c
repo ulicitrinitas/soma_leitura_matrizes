@@ -98,7 +98,25 @@ int main(int argc, char **argv)
 
     print_nmatrix(matrizD->matriz, num_msize);
 
-    // TODO: Gravação da Matriz D 
+    // TODO: Gravação da Matriz D
+
+    FILE* fD = fopen(argv[6], "w");
+
+
+    if(fD == NULL){
+        puts("Erro! Gravacao da Matriz D falhou!");
+        return EXIT_FAILURE;
+    }
+
+    for(int i = 0; i < num_msize; i++){
+        for(int j = 0; j < num_msize; j++){
+            fprintf(fD, "%d ", matrizD->matriz[i][j]);
+        }
+        fprintf(fD, "\n");
+    }
+
+    fclose(fD);
+
     // TODO: Leitura da Matriz C
     // TODO: Multiplicação das Matrizes D x C = E
     // TODO: Gravação da Matriz E
