@@ -8,7 +8,7 @@ char** leitura_das_matrizes(FILE *f, int size);
 void show(int n);
 void substitui_char(char **m_str, int num, char antigo, char novo);
 void print_cmatrix(char **m_str, int num);
-int** gerar_matriz(int** matriz, char** c_matriz, int num_msize, char padrao);
+int** gerar_matriz(char** c_matriz, int num_msize, char padrao);
 void print_nmatrix(int **m_int, int num);
 
 int main(int argc, char **argv)
@@ -61,9 +61,11 @@ int main(int argc, char **argv)
     
     print_cmatrix(linhas_m2, num_msize);
 
-    int** m1 = gerar_matriz((int**) NULL, linhas_m1, num_msize, padrao);
+    int** m1 = gerar_matriz(linhas_m1, num_msize, padrao);
+    int** m2 = gerar_matriz(linhas_m2, num_msize, padrao);
 
     print_nmatrix(m1, num_msize);
+    print_nmatrix(m2, num_msize);
 
     return 0;
 }
@@ -140,10 +142,9 @@ void print_nmatrix(int **m_int, int num)
     }
 }
 
-int** gerar_matriz(int** matriz, char** c_matriz, int num_msize, char padrao)
+int** gerar_matriz(char** c_matriz, int num_msize, char padrao)
 {
-    
-    matriz = (int**) calloc(num_msize, sizeof(int*));
+    int** matriz = (int**) calloc(num_msize, sizeof(int*));
 
     if(matriz == NULL){
         puts("Erro! Espaco insuficiente!");
