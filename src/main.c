@@ -15,6 +15,8 @@ int** gerar_nmatriz(int num);
 int** inserir_nmatriz(int** matriz, char** c_matriz, int num_msize, char padrao);
 int** gerar_nmatriz_lida(char** c_matriz, int num, char padrao);
 
+int** soma_matrizes(int** m1, int** m2, int num);
+
 int main(int argc, char **argv)
 {
     printf("%s was running with %d args\n", argv[0], argc-1);
@@ -30,25 +32,25 @@ int main(int argc, char **argv)
     show(n_show);
     printf("num_threads: %d\nnum_msize: %d\n", num_threads, num_msize);
 
-    FILE *f1;
-    FILE *f2;
+    FILE *fA;
+    FILE *fB;
 
-    f1 = fopen(argv[3], "r");
-    f2 = fopen(argv[4], "r");
+    fA = fopen(argv[3], "r");
+    fB = fopen(argv[4], "r");
 
-    if(f1 == NULL || f2 == NULL){
+    if(fA == NULL || fB == NULL){
         puts("Erro! Leitura dos arquivos falhou!");
         return EXIT_FAILURE;
     }
 
     show(n_show);
-    printf("f1: %s\nf2: %s\n", argv[4], argv[5]);
+    printf("fA: %s\nfB: %s\n", argv[4], argv[5]);
 
-    char **linhas_m1 = leitura_das_matrizes(f1, num_msize);
-    char **linhas_m2 = leitura_das_matrizes(f2, num_msize);
+    char **linhas_m1 = leitura_das_matrizes(fA, num_msize);
+    char **linhas_m2 = leitura_das_matrizes(fB, num_msize);
 
-    fclose(f1);
-    fclose(f2);
+    fclose(fA);
+    fclose(fB);
 
     print_cmatrix(linhas_m1, num_msize);
 
@@ -193,4 +195,18 @@ int** gerar_nmatriz_lida(char** c_matriz, int num, char padrao)
     matriz = inserir_nmatriz(matriz, c_matriz, num, padrao);
 
     return matriz;
+}
+
+int** soma_matrizes(int** m1, int** m2, int num)
+{
+    int** resultado = gerar_nmatriz(num);
+
+    for(int i = 0; i < num; i++){
+        for(int j = 0; j < num; j++){
+            resultado[i][j] = m1[i][j] + m2[i][j];
+        }
+    }
+
+    return resultado;
+
 }
