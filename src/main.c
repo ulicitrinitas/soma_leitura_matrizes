@@ -92,11 +92,18 @@ int main(int argc, char **argv)
     print_nmatrix(matrizA->gerada, num_msize);
     print_nmatrix(matrizB->gerada, num_msize);
 
-    Resultante* matrizC = (Resultante*) malloc(sizeof(Resultante));
+    Resultante* matrizD = (Resultante*) malloc(sizeof(Resultante));
 
-    matrizC->matriz = soma_matrizes(matrizA->gerada, matrizB->gerada, num_msize);
+    matrizD->matriz = soma_matrizes(matrizA->gerada, matrizB->gerada, num_msize);
 
-    print_nmatrix(matrizC->matriz, num_msize);
+    print_nmatrix(matrizD->matriz, num_msize);
+
+    // TODO: Gravação da Matriz D 
+    // TODO: Leitura da Matriz C
+    // TODO: Multiplicação das Matrizes D x C = E
+    // TODO: Gravação da Matriz E
+    // TODO: Redução da Matriz E
+    // TODO: Criar Threads
 
     return 0;
 }
