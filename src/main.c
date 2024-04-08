@@ -137,7 +137,7 @@ char** leitura_das_matrizes(FILE *f, int size)
     char **linhas = (char**) calloc(size, sizeof(char*));
 
     if(linhas == NULL){
-        puts("Erro! Espaco insuficiente!");
+        puts("Erro! Espaço insuficiente!");
         exit(EXIT_FAILURE);
     }
 
@@ -146,7 +146,7 @@ char** leitura_das_matrizes(FILE *f, int size)
     }
 
     if(linhas[1] == NULL){
-        puts("Erro! Espaco insuficiente no vetor!");
+        puts("Erro! Espaço insuficiente no vetor!");
         exit(EXIT_FAILURE);
     }
 
@@ -199,7 +199,7 @@ int** gerar_nmatriz(int num)
     int** matriz = (int**) calloc(num, sizeof(int*));
 
     if(matriz == NULL){
-        puts("Erro! Espaco insuficiente!");
+        puts("Erro! Espaço insuficiente!");
         exit(EXIT_FAILURE);
     }
 
@@ -208,7 +208,7 @@ int** gerar_nmatriz(int num)
         matriz[i] = (int*) calloc(num, sizeof(int));
 
         if(matriz[i] == NULL){
-            puts("Erro! Espaco insuficiente!");
+            puts("Erro! Espaço insuficiente!");
             exit(EXIT_FAILURE);
         }
     }
