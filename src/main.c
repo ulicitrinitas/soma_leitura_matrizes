@@ -30,6 +30,8 @@ int** gerar_nmatriz_lida(char** c_matriz, int num, char padrao);
 
 int** soma_matrizes(int** m1, int** m2, int num);
 
+void gravar_matriz(FILE* f  , int** matriz, int num);
+
 int main(int argc, char **argv)
 {
     printf("%s was running with %d args\n", argv[0], argc-1);
@@ -102,18 +104,12 @@ int main(int argc, char **argv)
 
     FILE* fD = fopen(argv[6], "w");
 
-
     if(fD == NULL){
         puts("Erro! Gravacao da Matriz D falhou!");
         return EXIT_FAILURE;
     }
 
-    for(int i = 0; i < num_msize; i++){
-        for(int j = 0; j < num_msize; j++){
-            fprintf(fD, "%d ", matrizD->matriz[i][j]);
-        }
-        fprintf(fD, "\n");
-    }
+    gravar_matriz(fD, matrizD->matriz, num_msize);
 
     fclose(fD);
 
@@ -260,3 +256,15 @@ int** soma_matrizes(int** m1, int** m2, int num)
     return resultado;
 
 }
+
+void gravar_matriz(FILE* f  , int** matriz, int num)
+{
+    for(int i = 0; i < num; i++){
+        for(int j = 0; j < num; j++){
+            fprintf(f, "%d ", matriz[i][j]);
+        }
+        fprintf(f, "\n");
+    }
+
+}
+
