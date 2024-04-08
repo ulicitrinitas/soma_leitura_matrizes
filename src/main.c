@@ -124,6 +124,10 @@ int main(int argc, char **argv)
 
     print_cmatrix(matrizC->lida, num_msize);
 
+    substitui_char(matrizC->lida, num_msize, ' ', padrão);
+
+    print_cmatrix(matrizC->lida, num_msize);
+
     // TODO: Multiplicação das Matrizes D x C = E
     // TODO: Gravação da Matriz E
     // TODO: Redução da Matriz E
