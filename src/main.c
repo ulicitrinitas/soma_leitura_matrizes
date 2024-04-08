@@ -25,8 +25,8 @@ void print_nmatrix(int **m_int, int num);
 void substitui_char(char **m_str, int num, char antigo, char novo);
 
 int** gerar_nmatriz(int num);
-int** inserir_nmatriz(int** matriz, char** c_matriz, int num_msize, char padrao);
-int** gerar_nmatriz_lida(char** c_matriz, int num, char padrao);
+int** inserir_nmatriz(int** matriz, char** c_matriz, int num_msize, char padrão);
+int** gerar_nmatriz_lida(char** c_matriz, int num, char padrão);
 
 int** soma_matrizes(int** m1, int** m2, int num);
 
@@ -77,19 +77,19 @@ int main(int argc, char **argv)
 
     print_cmatrix(matrizB->lida, num_msize);
 
-    char padrao = '$';
+    const char padrão = '$';
 
-    substitui_char(matrizA->lida, num_msize, ' ', padrao);
+    substitui_char(matrizA->lida, num_msize, ' ', padrão);
 
     print_cmatrix(matrizA->lida, num_msize);
 
-    substitui_char(matrizB->lida, num_msize, ' ', padrao);
+    substitui_char(matrizB->lida, num_msize, ' ', padrão);
 
     
     print_cmatrix(matrizB->lida, num_msize);
 
-    matrizA->gerada = gerar_nmatriz_lida(matrizA->lida, num_msize, padrao);
-    matrizB->gerada = gerar_nmatriz_lida(matrizB->lida, num_msize, padrao);
+    matrizA->gerada = gerar_nmatriz_lida(matrizA->lida, num_msize, padrão);
+    matrizB->gerada = gerar_nmatriz_lida(matrizB->lida, num_msize, padrão);
 
     print_nmatrix(matrizA->gerada, num_msize);
     print_nmatrix(matrizB->gerada, num_msize);
@@ -114,6 +114,16 @@ int main(int argc, char **argv)
     fclose(fD);
 
     // TODO: Leitura da Matriz C
+    Matriz *matrizC = (Matriz*) malloc(sizeof(Matriz));
+
+    matrizC->f = fopen(argv[5], "r");
+
+    matrizC->lida = leitura_das_matrizes(matrizC->f, num_msize);
+
+    fclose(matrizC->f);
+
+    print_cmatrix(matrizC->lida, num_msize);
+
     // TODO: Multiplicação das Matrizes D x C = E
     // TODO: Gravação da Matriz E
     // TODO: Redução da Matriz E
@@ -216,17 +226,17 @@ int** gerar_nmatriz(int num)
     return matriz;
 }
 
-int** inserir_nmatriz(int** matriz, char** c_matriz, int num, char padrao)
+int** inserir_nmatriz(int** matriz, char** c_matriz, int num, char padrão)
 {
     for(int i = 0; i < num; i++){
-        char* substring = strtok(c_matriz[i], &padrao);
+        char* substring = strtok(c_matriz[i], &padrão);
 
         int j = 0;
 
         while(substring != NULL){
                 
             matriz[i][j] = atoi(substring);
-            substring = strtok(NULL, &padrao);
+            substring = strtok(NULL, &padrão);
             
             j++;
         }
@@ -235,10 +245,10 @@ int** inserir_nmatriz(int** matriz, char** c_matriz, int num, char padrao)
     return matriz;
 }
 
-int** gerar_nmatriz_lida(char** c_matriz, int num, char padrao)
+int** gerar_nmatriz_lida(char** c_matriz, int num, char padrão)
 {
     int** matriz = gerar_nmatriz(num);
-    matriz = inserir_nmatriz(matriz, c_matriz, num, padrao);
+    matriz = inserir_nmatriz(matriz, c_matriz, num, padrão);
 
     return matriz;
 }
